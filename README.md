@@ -8,3 +8,9 @@
 6. pip install scipy
 6. pip install pandas
 ```
+
+# Запуск `.py` файлов из `jupyter`
+
+```
+% load /path/to/script.py
+```
