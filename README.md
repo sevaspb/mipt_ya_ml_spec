@@ -1,2 +1,10 @@
-# mipt_ya_ml_spec
-https://www.coursera.org/specializations/machine-learning-data-analysis?action=enroll#faq-list
+# Установка
+```
+1. brew update && brew install pyenv
+2. PYTHON_CONFIGURE_OPTS="--enable-framework" pyenv install 3.6.0
+3. pip install ipython
+4. pip install jupyter
+5. pip install matplotlib
+6. pip install scipy
+6. pip install pandas
+```
