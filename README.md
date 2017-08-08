@@ -9,6 +9,13 @@
 6. pip install pandas
 ```
 
+# Запуск
+
+```
+1. pyenv local 3.6.0
+2. jupyter notebook
+```
+
 # Запуск `.py` файлов из `jupyter`
 
 ```
