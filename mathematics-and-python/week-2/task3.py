@@ -3,7 +3,7 @@ import pylab
 
 from IPython.display import display, Markdown
 from scipy.optimize import minimize, differential_evolution
-from functions import fun, print_fun
+from functions import fun, print_fun, numpy_fun
 
 display(Markdown('# Задача 3. Минимизация негладкой функции'))
 
@@ -23,8 +23,7 @@ result = differential_evolution(h, bounds)
 print(f"Результат: x={result.x}, fun={result.fun} nfev={result.nfev}")
 
 display(Markdown('## График исследуемой фукнции на интервале [1, 30]'))
-x = numpy.linspace(0,30,100)
-y = numpy.round(numpy.sin(x/5) * numpy.exp(x/10) + 5*numpy.exp(-x/2))
-pylab.plot(x, y)
+x = numpy.linspace(0, 30, 100)
+pylab.plot(x, numpy.round(numpy_fun(x)))
 pylab.show()
 
