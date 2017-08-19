@@ -16,8 +16,14 @@
 2. jupyter notebook
 ```
 
-# Запуск `.py` файлов из `jupyter`
+## Запуск `.py` файлов из `jupyter`
 
 ```
-% load /path/to/script.py
+%run /path/to/script.py
+```
+
+## Загрузка фала `.py` в `jupyter`
+
+```
+%load /path/to/script.py
 ```
