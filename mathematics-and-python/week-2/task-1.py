@@ -2,6 +2,8 @@ import os
 import re
 import itertools
 import numpy as np
+import scipy
+from scipy.spatial.distance import cdist
 from collections import Counter
 
 def read_file(name):
@@ -29,10 +31,30 @@ class Line():
 
 lines = list(map(lambda line: Line(line), read_file("sentences.txt")))
 terms = uniq_terms(map(lambda line: line.gist, lines))
-weights = map(lambda line:
-  list(map(lambda term: print(line.weight(term)), terms))
-  ,lines)
-print(np.array(list(weights)))
+weights = list(map(lambda line:
+  list(map(lambda term: line.weight(term), terms))
+  ,lines))
+matrix = np.array(weights)
+dist = cdist(matrix[0:1], matrix[1:], metric='cosine')
+
+def print_line(line):
+  for i, el in enumerate(line):
+    if el != 0:
+      print("%s:%s" % (terms[i], el))
+
+print(dist)
+#print(terms)
+print(matrix[0])
+print_line(matrix[0])
+print("_____________")
+print(matrix[1])
+print_line(matrix[1])
+
+d = scipy.spatial.distance.cosine(matrix[0], matrix[1])
+print(d)
+# print(matrix[0:1])
+# print(matrix[0:2])
+# print(matrix[0:3])
 # строки токенизировать в массив
 # массив почистить
 # все уникальные слова - gist
