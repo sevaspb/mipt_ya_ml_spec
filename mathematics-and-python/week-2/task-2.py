@@ -10,6 +10,12 @@ def fun(x):
 def numpy_fun(x):
   return np.sin(x/5) * np.exp(x/10) + 5*np.exp(-x/2)
 
+# A = [
+#   [x[0]**0, x[0]**1, ... x[0]**n],
+#   [x[1]**0, x[1]**1, ... x[1]**n],
+#   ...
+#   [x[n]**0, x[n]**1, ... x[n]**n]
+#]
 def build_A(x):
   size = len(x)
   return list(map(lambda item:
@@ -17,6 +23,7 @@ def build_A(x):
     ,x)
   )
 
+# b = [fun(x[0]), fun(x[1]), ... fun(x[n])]
 def build_b(x):
   return list(map(lambda item: fun(item), x))
 
@@ -38,7 +45,7 @@ _, _, w4 = solve([1, 4, 10, 15])
 display(Markdown('## Коэффиценты для системы четвёртой степени'))
 print(w4)
 
-display(Markdown('## График апроксимации исследуемой функции'))
+display(Markdown('## График аппроксимации исследуемой функции'))
 steps = np.linspace(0, 16, 100)
 pylab.plot(steps, numpy_fun(steps), '-g',
            steps, poly1d(w2)(steps), '-',
@@ -46,4 +53,3 @@ pylab.plot(steps, numpy_fun(steps), '-g',
            steps, poly1d(w4)(steps), '--')
 pylab.legend(['Original function', '2th degree poly', '3th degree poly', '4th degree poly'])
 pylab.show()
-
