@@ -37,6 +37,8 @@ def plot(rv, hist_vars, rv_label, hist_label):
   # Рисуем гистограмму по hist_vars
   ax.hist(hist_vars, normed=True, histtype='stepfilled', alpha=0.2, label=hist_label)
   ax.legend(loc='best', frameon=False)
+  ax.set_ylabel('$f(x)$')
+  ax.set_xlabel('$x$')
 
 ################
 # Основной код #
