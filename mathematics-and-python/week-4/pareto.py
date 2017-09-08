@@ -7,26 +7,21 @@ import math
 from IPython.display import display, Markdown
 from scipy.stats import pareto
 
+def plot(rv, hist_vars, rv_label, hist_label):
+  _, ax = plt.subplots(1, 1)
+  # Генерирует числа для графика
+  x = np.linspace(rv.ppf(0.01), rv.ppf(0.99), 10)
+  # Рисуем функцию плотности для непрерывного распределения rv
+  ax.plot(x, rv.pdf(x), 'r-', lw=3, alpha=0.6, label=rv_label)
+  # Рисуем гистограмму по hist_vars
+  ax.hist(hist_vars, normed=True, histtype='stepfilled', alpha=0.2, label=hist_label)
+
 display(Markdown('# Распределение Парето'))
 b = 128
 pareto_rv = sts.pareto(b)
 display(Markdown(f"## Коэффицент распеределения b={b}"))
-_, ax = plt.subplots(1, 1)
 
-# Генерирует числа для графика
-x = np.linspace(pareto_rv.ppf(0.01),
-                pareto_rv.ppf(0.99), 100)
-
-# Рисуем функцию плотности для нашего распределения
-ax.plot(x, pareto_rv.pdf(x), 'r-', lw=3, alpha=0.6, label='Pareto pdf')
-
-# Делаем выборку 1000 значений по нашей фукнции
-r = pareto_rv.rvs(1000)
-
-# Рисуем гистограмму рядом с функцией плотности
-ax.hist(r, normed=True, histtype='stepfilled', alpha=0.2)
-ax.legend(loc='best', frameon=False)
-plt.show()
+plot(pareto_rv, pareto_rv.rvs(1000), 'Pareto pdf', 'Histogram')
 
 def build_vars(n, size):
   return [calculate_E(pareto_rv.rvs(n)) for _ in range(size)]
